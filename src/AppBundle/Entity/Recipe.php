@@ -80,7 +80,7 @@ class Recipe
      *
      * @param string $name
      *
-     * @return Recipe
+     * @return $this
      */
     public function setName($name)
     {
@@ -104,7 +104,7 @@ class Recipe
      *
      * @param \DateTime $createdAt
      *
-     * @return Recipe
+     * @return $this
      */
     public function setCreatedAt($createdAt)
     {
@@ -128,7 +128,7 @@ class Recipe
      *
      * @param \DateTime $updatedAt
      *
-     * @return Recipe
+     * @return $this
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -150,13 +150,15 @@ class Recipe
     /**
      * Add ingredient
      *
-     * @param \AppBundle\Entity\ingredient $ingredient
+     * @param \AppBundle\Entity\Ingredient $ingredient
      *
-     * @return Recipe
+     * @return $this
      */
     public function addIngredient(\AppBundle\Entity\ingredient $ingredient)
     {
-        $this->ingredients[] = $ingredient;
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients[] = $ingredient;
+        }
 
         return $this;
     }
@@ -164,7 +166,7 @@ class Recipe
     /**
      * Remove ingredient
      *
-     * @param \AppBundle\Entity\ingredient $ingredient
+     * @param \AppBundle\Entity\Ingredient $ingredient
      */
     public function removeIngredient(\AppBundle\Entity\ingredient $ingredient)
     {
@@ -174,7 +176,7 @@ class Recipe
     /**
      * Get ingredients
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection<Ingredient>
      */
     public function getIngredients()
     {

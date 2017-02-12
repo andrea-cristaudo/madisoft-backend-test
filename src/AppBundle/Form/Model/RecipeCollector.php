@@ -4,23 +4,38 @@ namespace AppBundle\Form\Model;
 
 use AppBundle\Entity\Recipe;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class RecipeCollector
 {
-    /** @var ArrayCollection<Recipe> */
+    /**
+     * @var ArrayCollection<Recipe>
+     *
+     * @Assert\Valid
+     */
     private $recipes;
 
-    public function __construct()
+    public function __construct(ArrayCollection $recipes = null)
     {
-        $this->recipes = new ArrayCollection();
+        if (null === $recipes) {
+            $recipes = new ArrayCollection();
+        }
+
+        $this->recipes = $recipes;
     }
 
     /**
-     * @param ArrayCollection<Recipe> $recipes
+     * @param Recipe $recipe
+     *
+     * @return $this
      */
-    public function setRecipes($recipes)
+    public function addRecipe(Recipe $recipe)
     {
-        $this->recipes = $recipes;
+        if (!$this->recipes->contains($recipe)) {
+            $this->recipes[] = $recipe;
+        }
+
+        return $this;
     }
 
     /**

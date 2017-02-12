@@ -7,11 +7,22 @@
     padding: 10px;
 }
 
-.ingredients {
+.recipe-ingredients::after {
+    content: '';
+    display: block;
+    clear: both;
 }
 
-.ingredients .ingredient-form {
+.recipe-ingredients .ingredients {
+}
+
+.recipe-ingredients .ingredients .ingredient-form {
     border: 1px solid black;
     margin-bottom: 10px;
     padding: 10px;
+}
+
+.add-ingredient {
+    width: 100%;
+    clear: both;
 }

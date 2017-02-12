@@ -84,7 +84,7 @@ class Ingredient
      *
      * @param string $name
      *
-     * @return Ingredient
+     * @return $this
      */
     public function setName($name)
     {
@@ -108,7 +108,7 @@ class Ingredient
      *
      * @param string $description
      *
-     * @return Ingredient
+     * @return $this
      */
     public function setDescription($description)
     {
@@ -132,7 +132,7 @@ class Ingredient
      *
      * @param \DateTime $createdAt
      *
-     * @return Ingredient
+     * @return $this
      */
     public function setCreatedAt($createdAt)
     {
@@ -156,7 +156,7 @@ class Ingredient
      *
      * @param \DateTime $updatedAt
      *
-     * @return Ingredient
+     * @return $this
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -180,7 +180,7 @@ class Ingredient
      *
      * @param \AppBundle\Entity\recipe $recipe
      *
-     * @return Ingredient
+     * @return $this
      */
     public function addRecipe(\AppBundle\Entity\recipe $recipe)
     {

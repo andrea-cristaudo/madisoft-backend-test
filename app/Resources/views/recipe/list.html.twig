@@ -16,7 +16,7 @@
             <td>{{ recipe.name }}</td>
             <td>
                 <a href="{{ path('recipe_edit', {id: recipe.id}) }}" class="btn btn-primary">Edit</a>
-                <a href="{{ path('recipe_remove', {id: recipe.id}) }}" class="btn btn-primary">Remove</a>
+                <a href="{{ path('recipe_remove', {id: recipe.id}) }}" class="btn btn-danger">Remove</a>
             </td>
         </tr>
         {% endfor %}

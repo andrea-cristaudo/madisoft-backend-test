@@ -10,7 +10,16 @@
 
         {{ form_row(formView.recipes, {label: false}) }}
 
+        <div class="add-recipe">
+            <a href="#" class="btn btn-primary">Add recipe</a>
+        </div>
         <button class="btn btn-success" name="action" value="save">Save</button>
-        <button class="btn btn-danger" name="action" value="cancel">Cancel</button>
+        <button class="btn btn-primary" name="action" value="cancel">Cancel</button>
     {{ form_end(formView) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/manage-ingredients.js') }}"></script>
 {% endblock %}
