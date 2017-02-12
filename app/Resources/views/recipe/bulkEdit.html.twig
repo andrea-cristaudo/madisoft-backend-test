@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% set formView        = form.createView() %}
+{% set recipeCollector = form.data %}
+
+{% block title %}Bulk Edit Recipes{% endblock %}
+
+{% block body %}
+    {{ form_start(formView) }}
+        {{ form_errors(formView) }}
+
+        {{ form_row(formView.recipes, {label: false}) }}
+
+        <button class="btn btn-success" name="action" value="save">Save</button>
+        <button class="btn btn-danger" name="action" value="cancel">Cancel</button>
+    {{ form_end(formView) }}
+{% endblock %}

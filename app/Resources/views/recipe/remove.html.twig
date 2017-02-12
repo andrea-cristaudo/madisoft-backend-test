@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Remove Recipe - {{ recipe.name }}{% endblock %}
+
+{% block body %}
+    <form method="post">
+        <p>Would your really like to remove recipe "{{ recipe.name }}"?</p>
+        <button class="btn btn-danger" name="action" value="yes">Sì</button>
+        <button class="btn btn-primary" name="action" value="no">No</button>
+    </form>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        .ingredient-form {
+            border: 1px solid black;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            var $ingredientsDiv = $('#recipe_ingredients');
+            $ingredientsDiv.data('index', $('.ingredient-name', $ingredientsDiv).length);
+
+            $('.ingredient-form', $ingredientsDiv).each(function () {
+                var $ingredientFormDiv = $(this);
+                $('.ingredient-form-remove', $ingredientFormDiv).on('click', function (e) {
+                    e.preventDefault();
+
+                    $ingredientFormDiv.remove();
+                });
+            });
+
+            var $addIngredientA = $('<a>')
+                    .attr('href', '#')
+                    .addClass('btn')
+                    .addClass('btn-primary')
+                    .text('Add ingredient')
+                    .appendTo($ingredientsDiv)
+                ;
+            $addIngredientA.on('click', function (e) {
+                e.preventDefault();
+
+                var prototype = $ingredientsDiv.data('prototype');
+                var index = $ingredientsDiv.data('index');
+                var newIngredientForm = prototype.replace(/__name__label__/g, 'Ingredient n.' + index).replace(/__name__/g, index);
+                $ingredientsDiv.data('index', index + 1);
+
+                var $ingredientFormDiv = $('<div>')
+                        .addClass('form-group')
+                        .addClass('ingredient-form')
+                        .insertBefore($addIngredientA)
+                    ;
+
+                $(newIngredientForm)
+                    .append(
+                        $('<a>')
+                            .attr('href', '#')
+                            .addClass('btn')
+                            .addClass('btn-danger')
+                            .addClass('ingredient-form-remove')
+                            .text('Remove ingredient')
+                            .on('click', function (e) {
+                                e.preventDefault();
+
+                                $ingredientFormDiv.remove();
+                            })
+                    )
+                    .appendTo($ingredientFormDiv)
+                ;
+
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{%- block ingredient_collection_row -%}
+    {% if prototype is defined %}
+        {%- set attr = attr|merge({'data-prototype': form_row(prototype) }) -%}
+    {% endif %}
+
+    <div {{ block('widget_container_attributes') }}>
+        {{ form_label(form) }}
+
+        <div class="ingredients">
+            <div class="row">
+            {% for child in form %}
+                <div class="col-md-4">
+                    <div class="ingredient-form">
+                        {{ form_row(child, {label: false}) }}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{%- endblock ingredient_collection_row -%}
+
+{%- block recipe_collection_row -%}
+    {% if prototype is defined %}
+        {%- set attr = attr|merge({'data-prototype': form_row(prototype) }) -%}
+    {% endif %}
+
+    <div {{ block('widget_container_attributes') }}>
+        {{ form_label(form) }}
+
+        <div class="recipes">
+        {% for child in form %}
+            <div class="recipe-form">
+                {{ form_row(child, {label: false}) }}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{%- endblock recipe_collection_row -%}
